@@ -6,7 +6,7 @@ RUN rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/*
 
 RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y --allow-unauthenticated git
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 RUN a2enmod rewrite
 
@@ -22,7 +22,7 @@ EXPOSE 443/tcp
 
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get install -y --allow-unauthenticated --no-install-recommends \
 # Tools
     apt-utils \
     wget \
